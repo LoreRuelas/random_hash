@@ -1,17 +1,21 @@
-# Makefile
-
-.PHONY: install lint test run
-
 install:
-	pip install --upgrade pip
-	pip install -r requirements.txt
-	pip install flake8 pytest
+	pip install --upgrade pip &&\
+		pip install -r requirements.txt
 
+install-aws:
+	pip install --upgrade pip &&\
+		pip3 install -r requirements-aws.txt
+
+install-amazon-linux:
+	pip install --upgrade pip &&\
+		pip install -r amazon-linux.txt
+	
 lint:
-	flake8 .
+	pylint --disable=R,C random_hash.py
+
+format:
+	black *.py
 
 test:
-	pytest -v
+	python -m pytest -vv --cov=hello test_random_hash.py
 
-run:
-	python random_hash.py
