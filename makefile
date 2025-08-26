@@ -17,5 +17,6 @@ format:
 	black *.py
 
 test:
-	python -m pytest -vv --cov=hello test_random_hash.py
+	python -m pytest -vv test_random_hash.py
+
 
